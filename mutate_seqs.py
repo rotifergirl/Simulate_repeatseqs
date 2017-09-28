@@ -14,8 +14,9 @@ def main(file_name,mutation_freq,out_file):
 			val=random()
 			if val < mutation_freq:
 				sequence[i]=choice([x for x in "ACTG"])
-			mut_seq=''.join(sequence)
-			record = SeqRecord(mut_seq,read.id,"version 2")
+		mut_seq=''.join(sequence)
+		record = SeqRecord(Seq(mut_seq),id=read.id,name=read.name,description=read.description)
+		record.letter_annotations["phred_quality"]=read.letter_annotations["phred_quality"]
 		mutated_reads.append(record)
 	SeqIO.write(mutated_reads,out_file,"fastq")
 
