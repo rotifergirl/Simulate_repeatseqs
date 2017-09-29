@@ -14,7 +14,7 @@ def main(file_name,mutation_freq,out_file,iterations):
 			for i in range(0,len(sequence)):
 				val=random()
 				if val < mutation_freq:
-					sequence[i]=choice([x for x in "ACTG"])
+					sequence[i]=choice([x for x in "ACTG" if x != sequence[i]])
 			mut_seq=''.join(sequence)
 			record = SeqRecord(Seq(mut_seq),id=read.id,name=read.name,description=read.description)
 			record.letter_annotations["phred_quality"]=read.letter_annotations["phred_quality"]
